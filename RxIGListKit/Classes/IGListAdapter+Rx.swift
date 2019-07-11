@@ -22,7 +22,7 @@ extension Reactive where Base == ListAdapter {
      */
     public func objects<DataSource: ListAdapterDataSource & RxListAdapterDataSourceType, O: ObservableType>(dataSource: DataSource) ->
         (_ source: O) -> Disposable
-        where DataSource.Element == O.Element {
+        where DataSource.Element == O.E {
         base.dataSource = dataSource
         return { source in
             let subscription = source.subscribe({ e in
@@ -49,7 +49,7 @@ extension Reactive where Base == ListAdapter {
         -> (_ configureBlock: @escaping RxListSingleSectionCellConfigureBlock<S.Element, Cell>)
         -> (_ sizeBlock: @escaping RxListSingleSectionCellSizeBlock<S.Element>)
         -> (_ emptyViewProvider: EmptyViewProvider?)
-        -> Disposable where O.Element == S, S.Element: ListDiffable {
+        -> Disposable where O.E == S, S.Element: ListDiffable {
         return { source in
             { configureBlock1 in
                 { sizeBlock in
@@ -81,7 +81,7 @@ extension Reactive where Base == ListAdapter {
         -> (_ configureBlock: @escaping RxListSingleSectionCellConfigureBlock<S.Element, Cell>)
         -> (_ sizeBlock: @escaping RxListSingleSectionCellSizeBlock<S.Element>)
         -> (_ emptyViewProvider: EmptyViewProvider?)
-        -> Disposable where O.Element == S, S.Element: ListDiffable {
+        -> Disposable where O.E == S, S.Element: ListDiffable {
         return { source in
             { configureBlock1 in
                 { sizeBlock in
@@ -114,7 +114,7 @@ extension Reactive where Base == ListAdapter {
         -> (_ configureBlock: @escaping RxListSingleSectionCellConfigureBlock<S.Element, Cell>)
         -> (_ sizeBlock: @escaping RxListSingleSectionCellSizeBlock<S.Element>)
         -> (_ emptyViewProvider: EmptyViewProvider?)
-        -> Disposable where O.Element == S, S.Element: ListDiffable {
+        -> Disposable where O.E == S, S.Element: ListDiffable {
         return { source in
             { configureBlock1 in
                 { sizeBlock in
